@@ -1,0 +1,29 @@
+🎓
+Student Result Tracker
+Manage and track student academic performance
+
+{{ showForm ? '✕ Close Form' : '+ Add Student' }}
+Total Students {{ results.length }}
+Class Average {{ classAverage | number:'1.1-1' }}%
+Passed {{ passCount }}
+Failed {{ failCount }}
+🏆 Top Student: {{ topStudent.name }} ({{ topStudent.rollNumber }}) — {{ topStudent.percentage | number:'1.1-1' }}% | Grade: {{ topStudent.grade }}
+Add New Student
+Full Name * 
+e.g. Arjun Kumar
+ Name is required (min 2 characters)
+Roll Number * 
+e.g. A006
+ Roll number is required
+Enter Marks (0 - 100)
+{{ subject | titlecase }} 
+ Enter 0–100
+Cancel Add Student
+🔍 Search by name or roll number...
+{{ g }}
+Showing {{ filteredResults.length }} of {{ results.length }} students
+
+Roll No	Student Name	English	Math	Science	Social	Telugu	Total / 500	Percentage	Grade	Status	Action
+{{ r.rollNumber }}	{{ r.name }}	{{ r.english }}	{{ r.math }}	{{ r.science }}	{{ r.social }}	{{ r.telugu }}	{{ r.total }}	{{ r.percentage | number:'1.1-1' }}%	{{ r.grade }}	{{ r.status }}	Delete
+No students found matching your search.
+Student Result Tracker — Built with Angular | Total Records: {{ results.length }}

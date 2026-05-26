@@ -1,0 +1,18 @@
+export interface Student {
+  id: number;
+  name: string;
+  rollNumber: string;
+  english: number;
+  math: number;
+  science: number;
+  social: number;
+  telugu: number;
+}
+ 
+export interface StudentResult extends Student {
+  total: number;
+  percentage: number;
+  grade: string;
+  status: string;
+}
+ 

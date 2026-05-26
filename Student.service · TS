@@ -1,0 +1,42 @@
+
+import { Injectable } from '@angular/core';
+import { Student, StudentResult } from './student.model';
+ 
+@Injectable({ providedIn: 'root' })
+export class StudentService {
+  private students: Student[] = [
+    { id: 1, name: 'Priya Sharma', rollNumber: 'A001', english: 85, math: 92, science: 88, social: 79, telugu: 90 },
+    { id: 2, name: 'Rahul Mehta', rollNumber: 'A002', english: 55, math: 48, science: 60, social: 52, telugu: 45 },
+    { id: 3, name: 'Sneha Reddy', rollNumber: 'A003', english: 95, math: 98, science: 96, social: 94, telugu: 97 },
+    { id: 4, name: 'Arjun Kumar', rollNumber: 'A004', english: 72, math: 68, science: 75, social: 70, telugu: 65 },
+    { id: 5, name: 'Divya Nair', rollNumber: 'A005', english: 30, math: 25, science: 35, social: 28, telugu: 32 },
+  ];
+ 
+  private nextId = 6;
+ 
+  getResults(): StudentResult[] {
+    return this.students.map(s => this.calculate(s));
+  }
+ 
+  addStudent(student: Student): void {
+    student.id = this.nextId++;
+    this.students.push(student);
+  }
+ 
+  deleteStudent(id: number): void {
+    this.students = this.students.filter(s => s.id !== id);
+  }
+ 
+  private calculate(s: Student): StudentResult {
+    const total = s.english + s.math + s.science + s.social + s.telugu;
+    const percentage = total / 5;
+    let grade = '';
+    let status = '';
+    if (percentage >= 90) { grade = 'A+'; status = 'Distinction'; }
+    else if (percentage >= 75) { grade = 'A'; status = 'First Class'; }
+    else if (percentage >= 60) { grade = 'B'; status = 'Second Class'; }
+    else if (percentage >= 35) { grade = 'C'; status = 'Pass'; }
+    else { grade = 'F'; status = 'Fail'; }
+    return { ...s, total, percentage, grade, status };
+  }
+}
